@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+
+:root {
+    --primary-color: #5411f0;
+    --secondary-color: #0077ff;
+    --tertiary-color: #39d4b2;
+    --des: 30%;
+    --bcg: linear-gradient(to bottom right,
+            var(--primary-color),
+            var(--tertiary-color),
+            var(--secondary-color));
+    --input-height: 30px;
+    --space: 10px;
+    --button-width: 150px;
+    --button-height: 50px;
+    --card-width: 300px;
+    --card-height: calc(var(--space) * 4 + var(--input-height) * 3);
+    --transitionTime: 1s;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0px;
+    background: var(--bcg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Open Sans", sans-serif;
+}
+
+.button, .button-content, .card-content {
+    cursor: pointer;
+}
+
+.button {
+    width: var(--button-width);
+    height: var(--button-height);
+    background: var(--primary-color);
+    position: relative;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+.button-content, .card-content {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity var(--transitionTime) cubic-bezier(1, 0, 0.55, 0.55);
+    opacity: 1;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity var(--transitionTime) cubic-bezier(1, 0, 0.55, 0.55);
+    opacity: 1;
+    
+    padding: var(--space);
+}
+
+.card-content > * {
+    width: 100%;
+    height: 30px;
+}
+
+.card-content > * + * {
+    margin-top: var(--space);
+}
+
+.card-state {
+    animation-name: button-to-card;
+    animation-duration: var(--transitionTime);
+    animation-fill-mode: forwards;
+}
+
+.button-state {
+    animation-name: card-to-button;
+    animation-duration: var(--transitionTime);
+    animation-fill-mode: forwards;
+}
+
+.card-state .button-content {
+    opacity: 0;
+}
+
+.button-state .card-content {
+    opacity: 0;
+}
+
+@keyframes button-to-card {
+    50% {
+        width: var(--button-width);
+        height: var(--card-height);
+    }
+
+    100% {
+        width: var(--card-width);
+        height: var(--card-height);
+    }
+}
+
+@keyframes card-to-button {
+    0% {
+        width: var(--card-width);
+        height: var(--card-height);
+    }
+
+    50% {
+        width: var(--button-width);
+        height: var(--card-height);
+    }
+
+    100% {
+        width: var(--button-width);
+        height: var(--button-height);
+    }
+}
+
+input {
+    border: 0px;
+    padding: 15px;
+}
+
+button {
+    background: white;
+    border: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
